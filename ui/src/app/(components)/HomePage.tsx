@@ -1,4 +1,5 @@
 import Tag from '@/components/Tag/Tag'
+import VHSCarousel from '@/components/VHSCarousel/VHSCarousel'
 import { Box, Container, Flex, Image, SimpleGrid } from '@chakra-ui/react'
 
 export default function HomePage() {
@@ -24,6 +25,9 @@ export default function HomePage() {
           <Image src="/images/cover.svg" h="350px" />
         </Flex>
       </SimpleGrid>
+        <Box w="full">
+          <VHSCarousel></VHSCarousel>
+        </Box>
     </Container>
   )
 }
