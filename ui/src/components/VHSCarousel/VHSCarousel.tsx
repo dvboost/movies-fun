@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Box, Image, Flex, Button, Text, Circle, Badge, Heading } from '@chakra-ui/react';
+import Link from 'next/link';
 
 const images = {
     vhs1: ['images/vhs1.svg', 'images/vhs2.svg'],
@@ -77,6 +78,8 @@ export default function VHSCarousel() {
                 <Flex justify="center" align="center">
 
                     <Button
+                        as={Link}
+                        href="/details"
                         mt={4}
                         bg="orange.400"
                         color="white"
