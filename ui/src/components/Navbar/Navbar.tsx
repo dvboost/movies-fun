@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 'use client'
 import React from 'react'
 import {
@@ -19,8 +18,8 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const items = [
-    { title: 'Discover Films', url: '#' },
-    { title: 'My Investments', url: '#' },
+    { title: 'Discover Films', url: '/' },
+    { title: 'Add Film', url: '/create' },
   ]
 
   return (
@@ -31,7 +30,11 @@ const Navbar = () => {
             <Image src="/images/logo.svg" alt="Logo" />
           </HStack>
 
-          <HStack as={'nav'} spacing={12} display={{ base: 'none', md: 'flex' }}>
+          <HStack
+            as={'nav'}
+            spacing={12}
+            display={{ base: 'none', md: 'flex' }}
+          >
             {items.map((i) => (
               <Link fontSize="lg" href={i.url}>
                 {i.title}
@@ -53,7 +56,9 @@ const Navbar = () => {
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               {items.map((i) => (
-                <Link href={i.url}>{i.title}</Link>
+                <Link href={i.url} key={i.title}>
+                  {i.title}
+                </Link>
               ))}
               <ConnectButton />
             </Stack>
