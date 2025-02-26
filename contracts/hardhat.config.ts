@@ -6,8 +6,8 @@ const PRIVATE_KEY = vars.get('PRIVATE_KEY')
 const config: HardhatUserConfig = {
   solidity: '0.8.20',
   networks: {
-    base: {
-      url: `https://base-sepolia-rpc.publicnode.com`,
+    mantle: {
+      url: `https://rpc.sepolia.mantle.xyz`,
       accounts: [PRIVATE_KEY],
     },
     story: {
