@@ -9,5 +9,7 @@ export const movies = [
     location: 'Los Angeles, California | Film short',
     image: '/images/lady-bird.png',
     video: 'https://www.youtube.com/watch?v=cNi_HC839Wo',
+    chainId: 1315,
+    listingId: '1',
   },
 ]
