@@ -1,12 +1,13 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit'
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
-import { arbitrumSepolia } from '@wagmi/core/chains'
+import { arbitrumSepolia, storyAeneid } from '@wagmi/core/chains'
 import { http } from 'wagmi'
 
-const testnetChains = [arbitrumSepolia]
+const testnetChains = [arbitrumSepolia, storyAeneid]
 
 const testnetTransports = {
   [arbitrumSepolia.id]: http(),
+  [storyAeneid.id]: http(),
 }
 
 const wallets = [metaMaskWallet]

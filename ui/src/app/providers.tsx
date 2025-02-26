@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from 'wagmi'
 import { config } from '@/config/wagmi'
 import '@rainbow-me/rainbowkit/styles.css'
+import StoryProvider from '@/providers/StoryProvider'
 
 interface Props {
   children: React.ReactNode
@@ -18,12 +19,14 @@ export function Providers({ children }: Props) {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-          <ChakraProvider
-            theme={theme}
-            toastOptions={{ defaultOptions: { isClosable: true } }}
-          >
-            {children}
-          </ChakraProvider>
+          <StoryProvider>
+            <ChakraProvider
+              theme={theme}
+              toastOptions={{ defaultOptions: { isClosable: true } }}
+            >
+              {children}
+            </ChakraProvider>
+          </StoryProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
