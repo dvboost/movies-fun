@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { randomBytes } from 'crypto'
 import { useState } from 'react'
-import { parseEther, toHex, zeroAddress } from 'viem'
+import { parseEther, toHex, zeroAddress, zeroHash } from 'viem'
 import { useAccount } from 'wagmi'
 import { writeContract, waitForTransactionReceipt } from '@wagmi/core'
 import { useForm } from 'react-hook-form'
@@ -29,6 +29,7 @@ import ChainRequired from '@/components/ChainRequired/ChainRequired'
 import { config } from '@/config/wagmi'
 import collectorAbi from '@/config/abi/Collector.json'
 import { useRouter } from 'next/navigation'
+import { LicenseTerms } from '@story-protocol/core-sdk'
 
 const SPG_NFT_CONTRACT = '0xc32A8a0FF3beDDDa58393d022aF433e78739FAbc'
 
@@ -49,8 +50,8 @@ export default function Create() {
   const handleRegister = async (data: any) => {
     try {
       const chain = chains.find((c) => c.id === selectedChainId)
-      if (!userAddress || !chain) {
-        throw new Error('User is not connected')
+      if (!userAddress || !chain || !client) {
+        throw new Error('Registration cannot be done')
       }
       let ipId, tokenId
       if (selectedChainId === 1315) {
@@ -61,7 +62,7 @@ export default function Create() {
           nftMetadataHash: toHex(randomBytes(16).toString('hex'), { size: 32 }),
           nftMetadataURI: randomBytes(8).toString('hex'),
         }
-        const mintResponse = await client?.ipAsset.mintAndRegisterIp({
+        const mintResponse = await client.ipAsset.mintAndRegisterIp({
           spgNftContract: SPG_NFT_CONTRACT,
           ipMetadata: metadata,
           txOptions: { waitForTransaction: true },
@@ -72,7 +73,55 @@ export default function Create() {
         }
         ipId = mintResponse.ipId
         tokenId = mintResponse.tokenId
+        setLoadingText('Registering and attaching PIL Terms')
+        const commercialRemixTerms: LicenseTerms = {
+          transferable: true,
+          royaltyPolicy: '0xBe54FB168b3c982b7AaE60dB6CF75Bd8447b390E',
+          defaultMintingFee: BigInt(0),
+          expiration: BigInt(0),
+          commercialUse: true,
+          commercialAttribution: true,
+          commercializerChecker: zeroAddress,
+          commercializerCheckerData: zeroAddress,
+          commercialRevShare: 50,
+          commercialRevCeiling: BigInt(0),
+          derivativesAllowed: true,
+          derivativesAttribution: true,
+          derivativesApproval: false,
+          derivativesReciprocal: true,
+          derivativeRevCeiling: BigInt(0),
+          currency: '0x1514000000000000000000000000000000000000',
+          uri: '',
+        }
+        const licensingConfig = {
+          isSet: false,
+          mintingFee: BigInt(0),
+          licensingHook: zeroAddress,
+          hookData: zeroHash,
+          commercialRevShare: 0,
+          disabled: false,
+          expectMinimumGroupRewardShare: 0,
+          expectGroupRewardPool: zeroAddress,
+        }
+        const attachReponse = await client.ipAsset.registerPilTermsAndAttach({
+          ipId: ipId,
+          licenseTermsData: [{ terms: commercialRemixTerms, licensingConfig }],
+          txOptions: { waitForTransaction: true },
+        })
+        const licenseTermsId = attachReponse.licenseTermsIds?.[0]
+        if (!licenseTermsId) {
+          throw new Error('Attaching terms failed')
+        }
+        setLoadingText('Minting license tokens')
+        await client.license.mintLicenseTokens({
+          licenseTermsId,
+          licensorIpId: ipId,
+          maxMintingFee: BigInt(0),
+          maxRevenueShare: 100,
+          txOptions: { waitForTransaction: true },
+        })
       }
+      setLoadingText('Creating the listing')
       const tx = await writeContract(config, {
         abi: collectorAbi,
         address: chain.collector as any,
