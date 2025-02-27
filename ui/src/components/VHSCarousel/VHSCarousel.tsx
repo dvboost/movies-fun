@@ -20,13 +20,14 @@ export default function VHSCarousel() {
       <Flex justify="center" align="center">
         <Heading>LISTED MOVIES</Heading>
       </Flex>
-      <SimpleGrid columns={{ base: 1, lg: 3 }} py={6}>
+      <SimpleGrid columns={{ base: 1, lg: 3 }} py={12}>
         {movies.map((movie) => (
           <Flex direction="column" align="center">
             <Image
               src={movie.image}
               transition="transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out"
               w="300px"
+              h="443px"
               _hover={{
                 transform: 'scale(1.1)',
               }}
@@ -72,7 +73,7 @@ export default function VHSCarousel() {
                 <Flex justify="space-between" align="center">
                   <Box>
                     <Text fontSize="lg" fontWeight="bold" color="blue.500">
-                      32d 18h
+                      {movie.deadline}
                     </Text>
                     <Text fontSize="md" fontWeight="normal" color="blue.400">
                       until deadline
@@ -81,12 +82,15 @@ export default function VHSCarousel() {
 
                   <Flex align="center" gap={2}>
                     <Text fontSize="lg" fontWeight="bold" color="orange.500">
-                      67%{' '}
+                      {((movie.funded / movie.fundedGoal) * 100).toFixed(0)}%{' '}
                       <Text as="span" fontStyle="italic">
                         funded
                       </Text>
                     </Text>
-                    <CircularProgress color="orange" value={67} />
+                    <CircularProgress
+                      color="orange"
+                      value={(movie.funded / movie.fundedGoal) * 100}
+                    />
                   </Flex>
                 </Flex>
                 <Flex justify="center" align="center">

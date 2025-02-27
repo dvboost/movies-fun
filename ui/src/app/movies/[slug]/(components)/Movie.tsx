@@ -126,14 +126,14 @@ export default function Movie({ slug }: Props) {
               Goal
             </Heading>
             <Text fontSize="3xl" fontWeight="bold" color="orange.500">
-              $6 500.00
+              ${movie.fundedGoal.toFixed(2)}
             </Text>
             <Box mt={2}>
               <Progress
-                value={68}
+                value={(movie.funded / movie.fundedGoal) * 100}
                 size="lg"
-                colorScheme="blue"
-                bg="gray.200"
+                colorScheme="orange"
+                bg="gray.300"
                 borderRadius="md"
               />
               <Flex justify="space-between" mt={1}>
@@ -142,7 +142,8 @@ export default function Movie({ slug }: Props) {
                 <Text>100</Text>
               </Flex>
               <Text fontSize="lg" mt={2}>
-                $3 489 - 68% funded
+                ${movie.funded} -{' '}
+                {((movie.funded / movie.fundedGoal) * 100).toFixed(0)}% funded
               </Text>
             </Box>
           </Box>
@@ -150,13 +151,10 @@ export default function Movie({ slug }: Props) {
             <Heading as="h3" size="lg" mb={2} color="gray.700">
               Deadline
             </Heading>
-            <Text fontSize="xl" fontWeight="bold" color="orange.500">
-              25 DAYS, 12 HOURS,
+            <Text fontSize="3xl" fontWeight="bold" color="orange.500">
+              {movie.deadline}
             </Text>
-            <Text fontSize="xl" fontWeight="bold" color="orange.500" mb={2}>
-              19 MINS
-            </Text>
-            <Text fontSize="lg">2025 October 16th</Text>
+            <Text fontSize="lg">{movie.deadlineDate}</Text>
           </Box>
 
           <Box minW="320px">
