@@ -29,6 +29,5 @@ Imagine.fun enables filmmakers to raise funds, protect IP, and engage supporters
 2. Run the platform: `yarn dev`
 
 ## Deployed Contracts
-
-**Story Aeneid**: `0xb8caeA283794D20be28D0b27F317C304493B5c43`
-**Mantle Sepolia**: `0xA7b56712aEA512ecCA5bE33dE5E9993F58BC6C65`
+- **Story Aeneid**: `0xb8caeA283794D20be28D0b27F317C304493B5c43`
+- **Mantle Sepolia**: `0xA7b56712aEA512ecCA5bE33dE5E9993F58BC6C65`
