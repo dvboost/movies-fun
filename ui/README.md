@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Imagine.fun
+
+## Overview
+Imagine.fun enables filmmakers to raise funds, protect IP, and engage supporters using Story Protocol on Story and Mantle chains. It offers decentralized crowdfunding, transparent revenue sharing, and IP management — empowering creators and communities to collaborate and share in project success.
+
+## Features
+- **Decentralized Crowdfunding:** Secure funding through token-based investments.
+- **IP Protection:** Utilize **Story Protocol** to register and safeguard intellectual property.
+- **Cross-Chain Support:** Operates seamlessly on **Story** and **Mantle** blockchains.
+- **Community Engagement:** Allow supporters to invest, earn rewards, and participate in project growth.
+- **Transparent Revenue Sharing:** Automate revenue distribution via smart contracts.
+
+## How It Works
+1. **Project Registration:** Filmmakers submit their movie concept and register IP through **Story Protocol**.
+2. **Funding Campaign:** Token-based crowdfunding campaigns are launched on the platform.
+3. **Investment & Rewards:** Supporters invest in projects and receive tokens representing their stake.
+4. **Production & Distribution:** Funds are used for production, while smart contracts ensure transparent payment distribution.
+5. **Revenue Sharing:** Profits are distributed automatically to stakeholders.
+
+## Technology Stack
+- **Blockchain Networks:** Story, Mantle
+- **Smart Contracts:** Solidity
+- **IP Protection:** Story Protocol
+- **Frontend Framework:** Next.js
+- **Wallet Integration:** Wagmi
 
 ## Getting Started
+1. Install dependencies: `yarn install`
+2. Run the platform: `yarn dev`
 
-First, run the development server:
+## Deployed Contracts
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Story Aeneid**: `0xb8caeA283794D20be28D0b27F317C304493B5c43`
+**Mantle Sepolia**: `0xA7b56712aEA512ecCA5bE33dE5E9993F58BC6C65`
